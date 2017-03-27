@@ -7,7 +7,7 @@ html, body { height: 99%; }
 
 body { 
     font-family: Verdana, Tahoma, Helvetica, Arial, sans-serif;
-    background-color: #000000;
+    background-color: #333333;
     font-size: 14px;
     text-align: center;
 }
@@ -20,7 +20,7 @@ table {
 }
 
 th, td { padding: 2px 10px; }
-th, td.hostname, td.address { background-color: #d3d3d3; }
+th, td.hostname, td.address { background-color: #ffffff; }
 
 .output { 
     white-space: normal;
@@ -105,4 +105,6 @@ div.state {
 
 .statusFileState {
     color: #ffffff;
+    position: fixed;
+    width: 100%;
 }
