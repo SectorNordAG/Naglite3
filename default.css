@@ -65,7 +65,7 @@ h3.title {
     font-weight: bold;
     overflow: auto;
     padding: 20px 2px 0px 2px;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 .subsection { font-size: 12px; }
@@ -79,6 +79,7 @@ h3.title {
     display: inline;
     padding: 3px;
     margin-left: 10px;
+    color: black;
 }
 
 div.state {
@@ -89,14 +90,14 @@ div.state {
     padding: 3px;
 }
 
-.up, .ok { background-color: green; }
-.warning { background-color: yellow; }
-.critical, .down { background-color: red; }
-.pending { background-color: #488acf; }
-.unknown { background-color: #00ffff; }
+.up, .ok { background-color: #3ce126; }
+.warning { background-color: #ffe400; }
+.critical, .down { background-color: #ee0000; }
+.pending { background-color: #AAAAAA; }
+.unknown { background-color: #ff7600; }
 .notification { background-color: #69b3b3; }
 .acknowledged { background-color: #d3d3d3; }
-.unreachable { background-color: orange; }
+.unreachable { background-color: #ee0000; }
 
 .fortune {
     margin-top: 10px;
@@ -107,4 +108,9 @@ div.state {
     color: #ffffff;
     position: fixed;
     width: 100%;
+}
+
+.problem_table {
+    max-height: 44%;
+    overflow: scroll;
 }

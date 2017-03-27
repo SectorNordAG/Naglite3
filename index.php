@@ -99,7 +99,7 @@ function duration($end) {
 
 function serviceTable($nagios, $services, $hostInfo, $select = false, $type = false) {
     if (false === $type) {
-        print("<table><tr>\n");
+        print("<div class=problem_table><table><tr>\n");
     } else {
         print(sprintf("<table><tr class='%s'>\n", $type));
     }
@@ -139,7 +139,7 @@ function serviceTable($nagios, $services, $hostInfo, $select = false, $type = fa
             }
         }
     }
-    print("</table>\n");
+    print("</table></div>\n");
 }
 
 function sectionHeader($type, $counter) {
@@ -392,7 +392,7 @@ if (!$showAddresses)
 $addressColumn = empty($hostInfo)?'':'<th>Address</th>';
 
 if ($counter['hosts']['down']) {
-    echo "<table>";
+    echo "<div class=problem_table><table>";
     echo "<tr><th>Host</th>$addressColumn<th>Status</th><th>Duration</th><th>Status Information</th></tr>";
     foreach($states['hosts']['down'] as $host) {
         $state = $nagios["host"][$host["current_state"]];
@@ -408,7 +408,7 @@ if ($counter['hosts']['down']) {
         print(sprintf("<td class='output'>%s</td>\n", htmlspecialchars($host['plugin_output'])));
         echo "</tr>\n";
     }
-    echo "</table>";
+    echo "</table></div>";
 } else {
     echo "<div class='state up'>ALL MONITORED HOSTS UP</div>\n";
 }
