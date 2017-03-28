@@ -116,3 +116,48 @@ table tbody tr td.output {
 .problem_table {
 	max-height: 41%;
 }
+
+@media screen and (min-width: 1930px) {
+	table tbody tr {
+		width: 33%;
+	}
+}
+
+@media screen and (max-width: 1119px) {
+	table tbody tr {
+		width: 100%;
+	}
+
+	.svlogo {
+		width: auto;
+	}
+
+	.svlogo img {
+		left: 0;
+		width: 150px;
+	}
+
+	table tbody tr td.hostname {
+	font-size: 36;
+	background: transparent;
+	font-weight: bold;
+	}
+
+	table tbody tr td.service {
+		font-size: 38pt;
+		font-weight: bold;
+	}
+
+	table tbody tr td.state {
+		display: none;
+	}
+
+	table tbody tr td.duration, table tbody tr td.attempts {
+		font-size: 22pt;
+	}
+
+	table tbody tr td.output {
+		font-size: 20pt;
+		text-align: center;
+	}
+}
