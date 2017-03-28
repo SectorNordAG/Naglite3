@@ -7,6 +7,9 @@
 *	@author		Steffen Zieger <me@saz.sh>
 *	@version	1.6
 *	@license	GPL
+*
+*	Modified for use with SNAG-View 3.5+
+*	@author 	Gabriel Jülke <pyriand3r@gmail.com>
 **/
 
 /**
@@ -19,9 +22,6 @@
 
 // Set file path to your nagios status log
 $statusFile = '/etc/nagios/status.dat';
-
-// Objects file
-// $objectsFile = '/var/cache/icinga/objects.cache';
 
 // Default refresh time in seconds
 $refresh = 10;
@@ -36,9 +36,6 @@ $hostFilter = function ($match) { return TRUE; };
 // Enable fortune output
 $enableFortune = false;
 $fortunePath = "/usr/games/fortune";
-
-// Uncomment to show custom heading
-//$nagliteHeading = '<Your Custom Heading>';
 
 // Show IP addresses of hosts
 $showAddresses = FALSE;
@@ -375,14 +372,17 @@ if (isset($_GET['css']) && is_readable(basename($_GET['css']) . '.css')) {
 echo "</head>\n";
 echo "<body>\n";
 
-echo "<div class=svlogo><img src='logo.png'></div>";
+echo "<div class=svlogo>";
+
+if ($nagliteHeading) {
+    echo '<h1 class="heading">'.$nagliteHeading.'<img src="logo.png"></h1>';
+} else {
+    echo "<img src='logo.png'>";
+}
+
+echo "</div>\n";
 
 echo '<div id="content">';
-if(is_callable($nagliteHeading)) {
-    $nagliteHeading();
-} elseif ($nagliteHeading) {
-    echo '<h1>'.$nagliteHeading.'</h1>';
-}
 
 sectionHeader('hosts', $counter);
 if (!$showAddresses) {
@@ -397,7 +397,7 @@ if ($counter['hosts']['down']) {
         $state = $nagios["host"][$host["current_state"]];
         echo "<tr class='".$state."'>\n";
         $hostName = substr($host["__HOST_NAME"], 2);
-		$nagiosHostName = $host["host_name"];
+        $nagiosHostName = $host["host_name"];
         if ($showAddresses) {
             echo "<td class='hostname'>$hostName</td><td class='address'>{$hostInfo[$nagiosHostName]}</td>\n";
         } else {
