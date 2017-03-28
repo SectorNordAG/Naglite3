@@ -116,11 +116,21 @@ div.state {
 .statusFileState {
     color: #333333;
     position: fixed;
-    width: 100%;
     top: 0;
+    right: 0;
 }
 
 .problem_table {
     max-height: 44%;
     overflow: scroll;
+}
+
+.svlogo {
+    position: fixed;
+    width: 100%;
+}
+
+.svlogo img {
+    margin: 0 auto;         
+    width: 140px;
 }

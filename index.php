@@ -217,7 +217,7 @@ foreach (array_keys($status) as $a_type) {
     foreach ($status[$a_type] as $a_key => $a_value) {
         if (!array_key_exists('host_name', $a_value))
             continue;
-        if (!$hostFilter($a_value['host_name'])) {
+        if (!$hostFilter(substr($a_value['__HOST_NAME'], 2))) {
             unset($status[$a_type][$a_key]);
         }
     }
@@ -374,11 +374,9 @@ if (isset($_GET['css']) && is_readable(basename($_GET['css']) . '.css')) {
 }
 echo "</head>\n";
 echo "<body>\n";
-echo "<!--\n";
-// var_dump($counter);
-// var_dump($states);
-// var_dump($hostInfo);
-echo "-->\n";
+
+echo "<div class=svlogo><img src='logo.png'></div>";
+
 echo '<div id="content">';
 if(is_callable($nagliteHeading)) {
     $nagliteHeading();
@@ -387,9 +385,10 @@ if(is_callable($nagliteHeading)) {
 }
 
 sectionHeader('hosts', $counter);
-if (!$showAddresses)
-    $hostInfo = False;
-$addressColumn = empty($hostInfo)?'':'<th>Address</th>';
+if (!$showAddresses) {
+    $hostInfo = false;
+}
+$addressColumn = ($hostInfo === false)?'':'<th>Address</th>';
 
 if ($counter['hosts']['down']) {
     echo "<div class=problem_table><table>";
@@ -398,8 +397,9 @@ if ($counter['hosts']['down']) {
         $state = $nagios["host"][$host["current_state"]];
         echo "<tr class='".$state."'>\n";
         $hostName = substr($host["__HOST_NAME"], 2);
+		$nagiosHostName = $host["host_name"];
         if ($showAddresses) {
-            echo "<td class='hostname'>$hostName</td><td class='address'>{$hostInfo[$hostName]["address"]}</td>\n";
+            echo "<td class='hostname'>$hostName</td><td class='address'>{$hostInfo[$nagiosHostName]}</td>\n";
         } else {
             echo "<td class='hostname'>$hostName</td>\n";
         }
