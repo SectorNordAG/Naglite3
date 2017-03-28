@@ -1,11 +1,13 @@
 div.statusFileState {
 	position: absolute;
 	top: 0;
-	width: 100%;
-	font-size: 18pt;
+	right: 0;
+	font-size: 14pt;
 	padding: 10px 0;
 	font-weight: bold;
-}
+	background-color: #333;
+	color: #eee;
+}	
 
 div.fortune {
 	display: none;
@@ -37,7 +39,7 @@ div.section {
 }
 
 #services div.stats, #hosts div.stats {
-	display: none;
+	margin-top: 0;
 }
 
 #content div.state {
@@ -104,4 +106,13 @@ table tbody tr td.duration, table tbody tr td.attempts {
 table tbody tr td.output {
 	font-size: 14pt;
 	text-align: center;
+}
+
+.svlogo img {
+	width: 275px;
+	margin-top: -20px;
+}
+
+.problem_table {
+	max-height: 41%;
 }
