@@ -8,7 +8,7 @@
 *	@version	1.6
 *	@license	GPL
 *
-*	Modified for use with SNAG-View 3.5+
+*	Modified for use with SNAG-View 3.5+ (http://www.snag-view.de)
 *	@author 	Gabriel Jülke <pyriand3r@gmail.com>
 **/
 
