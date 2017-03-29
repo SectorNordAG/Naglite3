@@ -21,7 +21,7 @@
 **/
 
 // Set file path to your nagios status log
-$statusFile = '/etc/nagios/status.dat';
+$statusFile = '/var/lib/nagios/status.dat';
 
 // Default refresh time in seconds
 $refresh = 10;
@@ -100,7 +100,7 @@ function serviceTable($nagios, $services, $hostInfo, $select = false, $type = fa
     } else {
         print(sprintf("<table><tr class='%s'>\n", $type));
     }
-    $addressColumn = empty($hostInfo)?'':'<th>Address</th>';
+    $addressColumn = ($hostInfo === false)? '' : '<th>Address</th>';
     print("<th>Host</th>$addressColumn<th>Service</th><th>Status</th><th>Duration</th><th>Attempts</th><th>Plugin Output</th>\n");
     print("</tr>");
     
@@ -118,8 +118,9 @@ function serviceTable($nagios, $services, $hostInfo, $select = false, $type = fa
                 }
                 print(sprintf("<tr class='%s'>\n", $rowType));
                 $hostName = substr($service["__HOST_NAME"], 2);
-                if ($hostInfo) {
-                    print("<td class='hostname'>$hostName</td><td class='address'>{$hostInfo[$hostName]["address"]}</td>\n");
+                $nagiosHostName = $service["host_name"];
+                if ($hostInfo !== false) {
+                    print("<td class='hostname'>$hostName</td><td class='address'>{$hostInfo[$nagiosHostName]["address"]}</td>\n");
                 } else {
                     print(sprintf("<td class='hostname'>%s</td>\n", $hostName));
                 }
@@ -385,7 +386,7 @@ echo "</div>\n";
 echo '<div id="content">';
 
 sectionHeader('hosts', $counter);
-if (!$showAddresses) {
+if ($showAddresses === false) {
     $hostInfo = false;
 }
 $addressColumn = ($hostInfo === false)?'':'<th>Address</th>';
