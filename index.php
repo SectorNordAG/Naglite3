@@ -281,13 +281,13 @@ foreach (array_keys($status) as $type) {
                     continue;
             } else if ($host['problem_has_been_acknowledged'] == '1') {
                 $counter['hosts']['acknowledged']++;
-                $states['hosts']['acknowledged'][] = $host['host_name'];
+                $states['hosts']['acknowledged'][] = $host['__HOST_NAME'];
             } else if ($host['notifications_enabled'] == 0) {
                 $counter['hosts']['notification']++;
-                $states['hosts']['notification'][] = $host['host_name'];
+                $states['hosts']['notification'][] = $host['__HOST_NAME'];
             } else if ($host['has_been_checked'] == 0) {
                 $counter['hosts']['pending']++;
-                $states['hosts']['pending'][] = $host['host_name'];
+                $states['hosts']['pending'][] = $host['__HOST_NAME'];
             } else {
                 switch ($host['current_state']) {
                     case $nagios['host']['ok']:
@@ -295,11 +295,11 @@ foreach (array_keys($status) as $type) {
                         break;
                     case $nagios['host']['down']:
                         $counter['hosts']['down']++;
-                        $states['hosts']['down'][] = $host;
+                        $states['hosts']['down'][] = $host['__HOST_NAME'];
                         break;
                     case $nagios['host']['unreachable']:
                         $counter['hosts']['unreachable']++;
-                        $states['hosts']['unreachable'][] = $host['host_name'];
+                        $states['hosts']['unreachable'][] = $host['__HOST_NAME'];
                         break;
             }
         }
@@ -449,3 +449,5 @@ print(sprintf('Status file last updated at %s', date(DATE_RFC2822, $statusFileMt
 print("</div>\n");
 print("</body>\n");
 print("</html>\n");
+
+?>
