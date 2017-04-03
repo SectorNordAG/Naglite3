@@ -24,7 +24,7 @@ Installation
 ------------
 
 1. Switch to a directory accessible through your web server (e.g. /opt/snagview/frontend/).
-2. git clone git://github.com/saz/Naglite3.git snaglite
+2. git clone https://github.com/SectorNordAG/sNaglite.git
 3. Copy config.php.example to config.php if you need to change a setting.
 4. Open a browser and point it to https://snag.view.server/snaglite/index.php.
 
